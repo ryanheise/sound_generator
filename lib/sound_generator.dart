@@ -11,18 +11,18 @@ class SoundGenerator {
       'io.github.mertguner.sound_generator/onOneCycleDataHandler');
 
   /// is Playing data changed event
-  static Stream<bool> _onIsPlayingChanged;
-  static Stream<bool> get onIsPlayingChanged {
+  static Stream<bool?>? _onIsPlayingChanged;
+  static Stream<bool?>? get onIsPlayingChanged {
     if (_onIsPlayingChanged == null)
       _onIsPlayingChanged = _onChangeIsPlaying
           .receiveBroadcastStream()
-          .map<bool>((value) => value);
+          .map<bool?>((value) => value);
     return _onIsPlayingChanged;
   }
 
   /// One cycle data changed event
-  static Stream<List<int>> _onGetOneCycleDataHandler;
-  static Stream<List<int>> get onOneCycleDataHandler {
+  static Stream<List<int>>? _onGetOneCycleDataHandler;
+  static Stream<List<int>>? get onOneCycleDataHandler {
     if (_onGetOneCycleDataHandler == null)
       _onGetOneCycleDataHandler = _onOneCycleDataHandler
           .receiveBroadcastStream()
@@ -31,8 +31,8 @@ class SoundGenerator {
   }
 
   /// init function
-  static Future<bool> init(int sampleRate) async {
-    final bool init = await _channel
+  static Future<bool?> init(int sampleRate) async {
+    final bool? init = await _channel
         .invokeMethod("init", <String, dynamic>{"sampleRate": sampleRate});
     return init;
   }
@@ -58,14 +58,14 @@ class SoundGenerator {
   }
 
   /// Get is Playing data
-  static Future<bool> get isPlaying async {
-    final bool playing = await _channel.invokeMethod('isPlaying');
+  static Future<bool?> get isPlaying async {
+    final bool? playing = await _channel.invokeMethod('isPlaying');
     return playing;
   }
 
   /// Get SampleRate
-  static Future<int> get getSampleRate async {
-    final int sampleRate = await _channel.invokeMethod('getSampleRate');
+  static Future<int?> get getSampleRate async {
+    final int? sampleRate = await _channel.invokeMethod('getSampleRate');
     return sampleRate;
   }
 
