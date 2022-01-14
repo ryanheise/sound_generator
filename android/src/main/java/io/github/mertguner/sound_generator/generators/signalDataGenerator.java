@@ -92,7 +92,8 @@ public class signalDataGenerator {
     }
 
     public void createOneCycleData() {
-        createOneCycleData(false);
+        //Fix excessive memory usage crash as per ryan's advice
+        // createOneCycleData(false);
     }
 
     public void createOneCycleData(boolean force) {
